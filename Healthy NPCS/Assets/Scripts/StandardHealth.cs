@@ -10,6 +10,11 @@ public class StandardHealth : MonoBehaviour, IHealth
     public event Action<float> OnHPPctChanged = delegate { };
     public event Action OnDied = delegate { };
 
+    private StandardHealth(int healthAmount)
+    {
+        startingHealth = healthAmount;
+    }
+
     private void Start()
     {
         currentHealth = startingHealth;

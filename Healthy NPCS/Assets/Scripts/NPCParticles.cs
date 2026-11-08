@@ -6,12 +6,13 @@ public class NPCParticles : MonoBehaviour
 
     private void Start()
     {
+        deathParticlePrefab = FindObjectOfType<ParticleSystem>();
         GetComponent<IHealth>().OnDied += HandleNPCDied;
     }
 
     private void HandleNPCDied()
     {
         var deathparticle = Instantiate(deathParticlePrefab, transform.position, transform.rotation);
-        Destroy(deathparticle, 4f);
+        Destroy(deathparticle, 3f);
     }
 }
