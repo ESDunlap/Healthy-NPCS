@@ -15,6 +15,7 @@ public class NumberOfHitsHealth : MonoBehaviour, IHealth
 
     public event Action<float> OnHPPctChanged = delegate (float f) { };
     public event Action OnDied = delegate { };
+    public event Action<Color> OnColorChange = delegate { };
 
     public float CurrentHpPct
     {
@@ -37,14 +38,22 @@ public class NumberOfHitsHealth : MonoBehaviour, IHealth
             OnHPPctChanged(CurrentHpPct);
 
             if (hitsRemaining <= 0)
-                OnDied();
+                Die();
         }
     }
 
     private IEnumerator InvunlerabilityTimer()
     {
         canTakeDamage = false;
+        OnColorChange(Color.yellow);
         yield return new WaitForSeconds(invulnerabilityTimeAfterEachHit);
         canTakeDamage = true;
+        OnColorChange(Color.red);
+    }
+
+    private void Die()
+    {
+        OnDied();
+        GameObject.Destroy(this.gameObject);
     }
 }

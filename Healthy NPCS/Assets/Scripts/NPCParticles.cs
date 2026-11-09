@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class NPCParticles : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem deathParticlePrefab;
+    private GameObject deathParticlePrefab;
 
     private void Start()
     {
-        deathParticlePrefab = FindObjectOfType<ParticleSystem>();
+        deathParticlePrefab = Resources.Load("DeathExplosion") as GameObject;
         GetComponent<IHealth>().OnDied += HandleNPCDied;
     }
 

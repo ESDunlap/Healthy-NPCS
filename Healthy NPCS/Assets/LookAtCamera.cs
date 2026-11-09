@@ -13,6 +13,5 @@ public class LookAtCamera : MonoBehaviour
             transform.position.y,
             _camera.transform.position.z);
         transform.LookAt(lookPosition);
-        Debug.Log(lookPosition);
     }
 }
